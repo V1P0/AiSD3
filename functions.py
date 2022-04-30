@@ -81,3 +81,22 @@ def partition(arr, start, end):
             i += 1
     swap(arr, i, end)
     return i
+
+
+def binary_search(arr, x):
+    global comparisons
+    comparisons = 0
+    return __binary_search(arr, x, 0, len(arr) - 1)
+
+
+def __binary_search(arr, x, start, end):
+    if less(end, start):
+        return False, comparisons
+    mid = (start + end) // 2
+    if equals(x, arr[mid]):
+        return True, comparisons
+    elif less(x, arr[mid]):
+        return __binary_search(arr, x, start, mid - 1)
+    else:
+        return __binary_search(arr, x, mid + 1, end)
+
